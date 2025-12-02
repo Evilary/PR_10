@@ -19,10 +19,10 @@ namespace Regex_Chernyshkov
     public partial class MainWindow : Window
     {
 
-        private void Add(object sender, RoutedEventArgs e);
-        private void Update(object sender, RoutedEventArgs e);
+        private void Add(object sender, RoutedEventArgs e) { }
+        private void Update(object sender, RoutedEventArgs e) { }
 
-        private void Delete(object sender, RoutedEventArgs e);
+        private void Delete(object sender, RoutedEventArgs e) { }
 
 
         public MainWindow()
