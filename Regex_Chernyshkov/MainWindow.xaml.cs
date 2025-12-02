@@ -19,15 +19,52 @@ namespace Regex_Chernyshkov
     public partial class MainWindow : Window
     {
 
-        private void Add(object sender, RoutedEventArgs e) { }
-        private void Update(object sender, RoutedEventArgs e) { }
+        private void Add(object sender, RoutedEventArgs e) { new Windows.Add(null).ShowDialog(); }
+        private void Update(object sender, RoutedEventArgs e) {
 
-        private void Delete(object sender, RoutedEventArgs e) { }
+            if (lv_passport.SelectedIndex > -1)
+                new Windows.Add(lv_passport.SelectedItems as Classes.Passport).ShowDialog();
+            else
+                MessageBox.Show("Выберите элемент для изменения");
+        
+        
+        
+        }
 
+        private void Delete(object sender, RoutedEventArgs e) {
+
+            if (lv_passport.SelectedIndex > -1)
+            {
+                Passports.Remove(lv_passport.SelectedItem as Classes.Passport);
+                LoadPassport();
+            }
+
+            else
+                MessageBox.Show("Выберете элемент для удаления");
+        
+        
+        }
+
+        public List<Classes.Passport> Passports = new List<Classes.Passport>();
+
+        public static MainWindow init;
 
         public MainWindow()
         {
             InitializeComponent();
+
+            init = this;
         }
+
+        public void LoadPassport()
+        {
+            lv_passport.Items.Clear();
+
+            foreach(Classes.Passport passport in Passports)
+                lv_passport.Items.Add(passport);
+        }
+
+        
+
     }
 }
