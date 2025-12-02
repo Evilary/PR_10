@@ -30,13 +30,13 @@ namespace Regex_Chernyshkov.Windows
 
                 Name.Text = EditPassports.Name;
 
-                FirstName.Text = EditPassports.Firstname;
+                FirstName.Text = EditPassports.FirstName;
 
-                LastName.Text = EditPassports.Lastname;
+                LastName.Text = EditPassports.LastName;
 
                 Issued.Text = EditPassports.Issued;
 
-                DateOfIssued.Text = EditPassports.DateOFIssued;
+                DateOfIssued.Text = EditPassports.DateOfIssued;
 
                 DepartmentCode.Text = EditPassports.DepartmentCode;
 
@@ -74,12 +74,48 @@ namespace Regex_Chernyshkov.Windows
 
             }
 
-            if (string.IsNullOrEmpty(LastName.Text) || !Classes.Common.CheckRegex.Match("^[а-яА-Я]*$", LastName.Text))
+            if (string.IsNullOrEmpty(LastName.Text) || !Classes.Common.CheckRegex.Match("^[a-яA-Я]*$", LastName.Text))
             {
                 MessageBox.Show("Не правильно указано отчество пользователя");
 
                 return;
 
+            }
+
+            if (string.IsNullOrEmpty(Issued.Text) || !Classes.Common.CheckRegex.Match("^[а-яА-Я\\s.,-]*$", Issued.Text))
+            {
+                MessageBox.Show("Не правильно указано поле 'паспорт выдан'");
+                return;
+            }
+
+            if (string.IsNullOrEmpty(DateOfIssued.Text) || !Classes.Common.CheckRegex.Match("^\\d{2}\\.\\d{2}\\.\\d{4}$", DateOfIssued.Text))
+            {
+                MessageBox.Show("Не правильно указано поле 'дата выдачи'");
+                return;
+            }
+
+            if (string.IsNullOrEmpty(DepartmentCode.Text) || !Classes.Common.CheckRegex.Match("^\\d{3}-\\d{3}$", DepartmentCode.Text))
+            {
+                MessageBox.Show("Не правильно указано поле 'код подразделения'");
+                return;
+            }
+
+            if (string.IsNullOrEmpty(SeriesAndNumber.Text) || !Classes.Common.CheckRegex.Match("^\\d{4}\\s\\d{6}$", SeriesAndNumber.Text))
+            {
+                MessageBox.Show("Не правильно указано поле 'серия и номер'");
+                return;
+            }
+
+            if (string.IsNullOrEmpty(DateOfBirth.Text) || !Classes.Common.CheckRegex.Match("^\\d{2}\\.\\d{2}\\.\\d{4}$", DateOfBirth.Text))
+            {
+                MessageBox.Show("Не правильно указано поле 'дата рождения'");
+                return;
+            }
+
+            if (string.IsNullOrEmpty(PlaceOfBirth.Text) || !Classes.Common.CheckRegex.Match("^[а-яА-Я\\s.,-]*$", PlaceOfBirth.Text))
+            {
+                MessageBox.Show("Не правильно указано поле 'место рождения'");
+                return;
             }
 
             if (EditPassports == null) {
@@ -90,10 +126,10 @@ namespace Regex_Chernyshkov.Windows
             }
 
             EditPassports.Name = Name.Text;
-            EditPassports.Firstname = FirstName.Text;
-            EditPassports.Lastname = LastName.Text;
+            EditPassports.FirstName = FirstName.Text;
+            EditPassports.LastName = LastName.Text;
             EditPassports.Issued = Issued.Text;
-            EditPassports.DateOFIssued = DateOfIssued.Text;
+            EditPassports.DateOfIssued = DateOfIssued.Text;
             EditPassports.DepartmentCode = DepartmentCode.Text;
             EditPassports.SeriesAndNumber = SeriesAndNumber.Text;
             EditPassports.DateOfBirth = DateOfBirth.Text;
